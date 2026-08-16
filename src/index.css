@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+@theme {
+  /* Brand */
+  --color-primary: #f97316;
+  --color-primary-dark: #ea580c;
+  --color-primary-light: #fff7ed;
+
+  /* Supporting */
+  --color-secondary: #2563eb;
+  --color-secondary-light: #eff6ff;
+
+  /* Background */
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+
+  /* Text */
+  --color-text: #111827;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+
+  /* Border */
+  --color-border: #e2e8f0;
+
+  /* Status */
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  /* Font */
+
+  --font-sans: "Inter", sans-serif;
+
+  /* Typography */
+  --text-h1: 48px;
+  --text-h1--line-height: 56px;
+
+  --text-h2: 36px;
+  --text-h2--line-height: 44px;
+
+  --text-h3: 24px;
+  --text-h3--line-height: 32px;
+
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+
+  --text-small: 14px;
+  --text-small--line-height: 20px;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+h1 {
+  font-size: var(--text-h1);
+  line-height: var(--text-h1--line-height);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+}
+
+h3 {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3--line-height);
+}
+
+.navbar li a {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  font-weight: bold;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: var(--color-primary);
+}
+
+.navbar-icons svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text);
+}
