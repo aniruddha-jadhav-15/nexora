@@ -72,16 +72,3 @@ h3 {
   font-size: var(--text-h3);
   line-height: var(--text-h3--line-height);
 }
-
-.navbar li a {
-  font-family: var(--font-sans);
-  font-size: var(--text-small);
-  line-height: var(--text-small--line-height);
-  font-weight: bold;
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.navbar li a:hover {
-  color: var(--color-primary);
-}
