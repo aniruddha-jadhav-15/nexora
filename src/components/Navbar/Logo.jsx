@@ -1,5 +1,6 @@
+import logo from "../../assets/logo.svg";
 function Logo() {
-  return <h1 className=" font-bold text-text">NEXORA</h1>;
+  return <img src={logo} alt="Nexora" className="w-48 h-auto" />;
 }
 
 export default Logo;

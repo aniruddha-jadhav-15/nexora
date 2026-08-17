@@ -1,0 +1,16 @@
+<svg width="560" height="200" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+  <title>Nexora logo</title>
+
+  <!-- Icon: shopping bag with cursor, vertical span 40-140, center at 90 -->
+  <g transform="translate(30,40)">
+    <path d="M20 30 L20 18 Q20 0 40 0 Q60 0 60 18 L60 30" fill="none" stroke="#BA7517" stroke-width="7" stroke-linecap="round"/>
+    <rect x="8" y="30" width="64" height="70" rx="10" fill="#EF9F27"/>
+    <circle cx="40" cy="65" r="16" fill="#ffffff"/>
+    <path d="M33 58 L51 65 L43 68 L40 76 Z" fill="#BA7517"/>
+  </g>
+
+  <!-- Wordmark, block centered on the icon's vertical center (y=90) -->
+  <text x="112" y="100" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#1A1A1A">NEX<tspan fill="#EF9F27">ORA</tspan></text>
+  <text x="113" y="122" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#6B6B6B" letter-spacing="4">SHOP SMARTER</text>
+
+</svg>

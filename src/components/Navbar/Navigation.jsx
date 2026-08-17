@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 function Navigation() {
   return (
-    <nav className="navbar">
-      <ul className=" flex justify-between gap-10">
+    <nav className="navbar hidden md:flex ">
+      <ul className=" flex gap-10">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>

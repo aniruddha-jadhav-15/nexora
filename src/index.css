@@ -85,9 +85,3 @@ h3 {
 .navbar li a:hover {
   color: var(--color-primary);
 }
-
-.navbar-icons svg {
-  width: 20px;
-  height: 20px;
-  color: var(--color-text);
-}
