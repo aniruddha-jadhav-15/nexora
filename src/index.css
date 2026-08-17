@@ -49,7 +49,7 @@
   --text-body--line-height: 24px;
 
   --text-small: 14px;
-  --text-small--line-height: 20px;
+  --text-small--line-height: 24px;
 }
 
 body {
@@ -71,4 +71,11 @@ h2 {
 h3 {
   font-size: var(--text-h3);
   line-height: var(--text-h3--line-height);
+}
+
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 24px;
 }
