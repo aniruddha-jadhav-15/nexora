@@ -1,4 +1,3 @@
-import AnnouncementBar from "../components/Home/AnnouncementBar";
 import Hero from "../components/Home/Hero";
 import Benefits from "../components/Home/Benefits";
 import Categories from "../components/Home/Categories";
@@ -18,7 +17,6 @@ function Home() {
 
   return (
     <>
-      <AnnouncementBar />
       <Hero />
       <Benefits />
       <Categories />

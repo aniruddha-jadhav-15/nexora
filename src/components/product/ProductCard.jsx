@@ -1,7 +1,7 @@
 import { Heart, Star } from "lucide-react";
 
 function ProductCard({ product, variant }) {
-  const { title, image, price, category, rating, tag } = product;
+  const { title, images, price, category, rating, tag } = product;
 
   if (variant === "minimal") {
     return (
@@ -9,14 +9,14 @@ function ProductCard({ product, variant }) {
         <div className="rounded-xl border border-border bg-white overflow-hidden">
           <div className="flex h-28 w-full items-center justify-center p-2">
             <img
-              src={image}
+              src={images?.[0]}
               alt={title}
               className="h-full w-full object-cover object-top rounded-lg"
             />
           </div>
 
           <div className="px-3 py-2">
-            <p className="text-sm font-semibold text-text">{category}</p>
+            <p className="text-sm font-semibold text-text">{category?.name}</p>
           </div>
         </div>
       </div>
@@ -36,7 +36,11 @@ function ProductCard({ product, variant }) {
           <Heart size={18} className="text-text-secondery" />
         </button>
 
-        <img src={image} alt={title} className="w-24 h-24 object-contain" />
+        <img
+          src={images?.[0]}
+          alt={title}
+          className="w-24 h-24 object-contain"
+        />
       </div>
 
       <div className="mt-3 space-y-1">

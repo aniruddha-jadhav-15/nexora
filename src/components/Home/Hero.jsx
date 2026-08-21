@@ -70,7 +70,7 @@ function Hero() {
             "
           >
             <img
-              src=""
+              // src=""
               alt="Featured Nexora products"
               className="h-full w-full object-contain"
             />

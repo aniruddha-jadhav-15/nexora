@@ -1,7 +1,7 @@
-import { products } from "../../data/products";
+// import { products } from "../../data/products";
 import ProductCard from "../product/ProductCard";
 import SectionHeader from "./SectionHeader";
-function NewArrivals() {
+function NewArrivals({ products }) {
   return (
     <section className="py-10">
       <div className="container mx-auto px-4">
