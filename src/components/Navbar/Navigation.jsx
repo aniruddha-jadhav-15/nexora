@@ -23,10 +23,10 @@ function Navigation({ toogle, handleOpenClose }) {
         </li>
         <li>
           <NavLink
-            to="/products"
+            to="/shop"
             className="block rounded-lg px-4 py-3 font-medium text-text transition hover:bg-orange-50 hover:text-primary"
           >
-            Products
+            Shop
           </NavLink>
         </li>
 
