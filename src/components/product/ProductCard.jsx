@@ -6,12 +6,12 @@ function ProductCard({ product, variant }) {
   if (variant === "minimal") {
     return (
       <div className="w-full">
-        <div className="rounded-xl border border-border bg-white overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-border bg-white">
           <div className="flex h-28 w-full items-center justify-center p-2">
             <img
               src={images?.[0]}
               alt={title}
-              className="h-full w-full object-cover object-top rounded-lg"
+              className="h-full w-full rounded-lg object-cover object-top"
             />
           </div>
 
@@ -24,34 +24,39 @@ function ProductCard({ product, variant }) {
   }
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-3 shadow-sm hover:shadow-md transition-shadow">
-      <div className="relative rounded-xl bg-gray-100 p-6 flex items-center justify-center">
+    <div className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-3">
+      {/* Image */}
+      <div className="relative flex aspect-square items-center justify-center rounded-lg bg-gray-100 p-3 sm:rounded-xl sm:p-5">
         {tag && (
-          <span className="absolute top-2 left-2 bg-orange-100 text-orange-500 text-xs font-semibold px-2.5 py-1 rounded-full">
+          <span className="absolute left-2 top-2 rounded-full bg-orange-100 px-2 py-1 text-[9px] font-semibold text-orange-500 sm:text-xs">
             {tag}
           </span>
         )}
 
-        <button className="absolute top-2 right-2 bg-surface rounded-full p-1.5 shadow-sm">
-          <Heart size={18} className="text-text-secondery" />
+        <button className="absolute right-2 top-2 rounded-full bg-white p-1.5 shadow-sm">
+          <Heart size={15} className="text-gray-500 sm:h-[18px] sm:w-[18px]" />
         </button>
 
         <img
           src={images?.[0]}
           alt={title}
-          className="w-24 h-24 object-contain"
+          className="h-full w-full object-contain"
         />
       </div>
 
-      <div className="mt-3 space-y-1">
-        <h3 className="font-semibold text-text">{title}</h3>
+      {/* Content */}
+      <div className="mt-2 space-y-1 sm:mt-3">
+        <h3 className="truncate text-xs font-semibold text-text sm:text-sm">
+          {title}
+        </h3>
 
         <div className="flex items-center gap-1">
-          <Star size={16} className="fill-orange-400 text-orange-400" />
-          <span className="text-small font-medium text-gray-700">{rating}</span>
+          <Star size={13} className="fill-orange-400 text-orange-400" />
+
+          <span className="text-xs font-medium text-gray-700">{rating}</span>
         </div>
 
-        <p className="text-body font-bold text-text">₹{price}</p>
+        <p className="text-sm font-bold text-text">₹{price}</p>
       </div>
     </div>
   );
