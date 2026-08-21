@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProductCard from "../components/product/ProductCard";
 import useProducts from "../hooks/useProducts";
 import { CiSearch } from "react-icons/ci";
@@ -5,6 +6,15 @@ import { CiSearch } from "react-icons/ci";
 function Shop() {
   const { data = [], isLoading, isError } = useProducts();
 
+  const [userSearch, setUserSearch] = useState("");
+
+  let filteredData = data;
+
+  filteredData = filteredData.filter((product) =>
+    product.title.toLowerCase().includes(userSearch.toLowerCase()),
+  );
+
+  // Loading and Error
   if (isLoading) {
     return (
       <section className="py-8">
@@ -69,6 +79,7 @@ function Shop() {
                   type="text"
                   placeholder="Search products..."
                   className="w-full rounded-lg border border-border py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary"
+                  onChange={(e) => setUserSearch(e.target.value)}
                 />
               </div>
 
@@ -87,7 +98,7 @@ function Shop() {
 
             {/* Products */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4">
-              {data.map((product) => (
+              {filteredData.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
