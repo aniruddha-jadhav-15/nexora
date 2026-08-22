@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 function Shop() {
   const [userSearch, setUserSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [sortBy, setSortBy] = useState("featured");
 
   const { data = [], isLoading, isError } = useProducts();
 
@@ -34,6 +35,20 @@ function Shop() {
     filteredData = filteredData.filter((product) =>
       selectedCategories.includes(product.category?.name),
     );
+  }
+
+  // Sort
+
+  if (sortBy === "low") {
+    filteredData = [...filteredData].sort((a, b) => a.price - b.price);
+  }
+
+  if (sortBy === "high") {
+    filteredData = [...filteredData].sort((a, b) => b.price - a.price);
+  }
+
+  if (sortBy === "rating") {
+    filteredData = [...filteredData].sort((a, b) => b.rating - a.rating);
   }
 
   // Loading and Error
@@ -111,11 +126,14 @@ function Shop() {
                 />
               </div>
 
-              <select className="w-full rounded-lg border border-border px-3 py-2 text-sm outline-none focus:border-primary sm:w-auto">
-                <option>Sort: Featured</option>
-                <option>Price: Low</option>
-                <option>Price: High</option>
-                <option>Rating</option>
+              <select
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm outline-none focus:border-primary sm:w-auto"
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                <option value="featured">Sort: Featured</option>
+                <option value="low">Price: Low</option>
+                <option value="high">Price: High</option>
+                <option value="reating">Rating</option>
               </select>
             </div>
 
