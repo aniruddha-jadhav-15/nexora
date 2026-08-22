@@ -4,15 +4,37 @@ import useProducts from "../hooks/useProducts";
 import { CiSearch } from "react-icons/ci";
 
 function Shop() {
-  const { data = [], isLoading, isError } = useProducts();
-
   const [userSearch, setUserSearch] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const { data = [], isLoading, isError } = useProducts();
 
   let filteredData = data;
 
+  // Search
   filteredData = filteredData.filter((product) =>
     product.title.toLowerCase().includes(userSearch.toLowerCase()),
   );
+
+  // Category
+
+  const categories = data.map((product) => product.category?.name);
+
+  const uniqueCategories = [...new Set(categories)];
+  const handleCategory = (e) => {
+    const category = e.target.value;
+
+    setSelectedCategories((prev) =>
+      e.target.checked
+        ? [...prev, category]
+        : prev.filter((item) => item !== category),
+    );
+  };
+  if (selectedCategories.length > 0) {
+    filteredData = filteredData.filter((product) =>
+      selectedCategories.includes(product.category?.name),
+    );
+  }
 
   // Loading and Error
   if (isLoading) {
@@ -35,6 +57,14 @@ function Shop() {
     );
   }
 
+  data.forEach((product) => {
+    product.images.forEach((image) => {
+      if (!image.startsWith("http")) {
+        console.log("Bad image:", product.id, image);
+      }
+    });
+  });
+
   return (
     <section className="py-8 overflow-x-hidden">
       <div className="container mx-auto px-4">
@@ -47,20 +77,18 @@ function Shop() {
               <p className="text-sm font-semibold">Categories</p>
 
               <div className="mt-3 space-y-2 text-sm text-gray-500">
-                <label className="flex gap-2">
-                  <input type="checkbox" />
-                  Clothes
-                </label>
-
-                <label className="flex gap-2">
-                  <input type="checkbox" />
-                  Electronics
-                </label>
-
-                <label className="flex gap-2">
-                  <input type="checkbox" />
-                  Furniture
-                </label>
+                {uniqueCategories.map((cat) => {
+                  return (
+                    <label className="flex gap-2" key={cat}>
+                      <input
+                        type="checkbox"
+                        value={cat}
+                        onChange={handleCategory}
+                      />
+                      {cat}
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </aside>
