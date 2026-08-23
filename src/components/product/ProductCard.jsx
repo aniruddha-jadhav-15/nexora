@@ -1,12 +1,21 @@
 import { Heart, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ product, variant }) {
+  const navigate = useNavigate();
+  if (!product) return null;
   const { title, images, price, category, rating, tag } = product;
+  const handleProductClick = () => {
+    navigate(`/shop/${product.id}`);
+  };
 
   if (variant === "minimal") {
     return (
       <div className="w-full">
-        <div className="overflow-hidden rounded-xl border border-border bg-white">
+        <div
+          className="overflow-hidden rounded-xl border border-border bg-white cursor-pointer"
+          onClick={handleProductClick}
+        >
           <div className="flex h-28 w-full items-center justify-center p-2">
             <img
               src={images?.[0]}
@@ -24,7 +33,10 @@ function ProductCard({ product, variant }) {
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-3">
+    <div
+      className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm transition-shadow hover:shadow-md sm:rounded-2xl sm:p-3 cursor-pointer"
+      onClick={handleProductClick}
+    >
       {/* Image */}
       <div className="relative flex aspect-square items-center justify-center rounded-lg bg-gray-100 p-3 sm:rounded-xl sm:p-5">
         {tag && (
