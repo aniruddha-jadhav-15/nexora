@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
 import { Star, Heart } from "lucide-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -9,9 +10,12 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(0);
   const { data, isError, isLoading } = useProducts();
   const product = data?.find((product) => product.id === Number(id));
+  const { cartItems, setCartItems, addToCart } = useContext(CartContext);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Product not found</p>;
+
+
 
   return (
     <section className="py-6">
@@ -123,6 +127,7 @@ function ProductDetails() {
               <button
                 type="button"
                 className="flex-1 rounded-lg bg-primary py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                onClick={() => addToCart(product, selectedSize, quantity)}
               >
                 Add to Cart
               </button>
