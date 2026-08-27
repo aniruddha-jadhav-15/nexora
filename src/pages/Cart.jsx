@@ -3,7 +3,13 @@ import { CartContext } from "../context/CartContext";
 import { Plus, Minus } from "lucide-react";
 function Cart() {
   const { cartItems, setCartItems } = useContext(CartContext);
-
+  if (cartItems.length === 0) {
+    return (
+      <h3 className="text-text font-bold text-xl md:text-2xl pb-27">
+        Your cart is empty
+      </h3>
+    );
+  }
 
   // Remove item
 
@@ -12,6 +18,37 @@ function Cart() {
 
     setCartItems(filteredArray);
   };
+
+  // Update Quaintity
+  const updateQuantity = (proId, type) => {
+    const updated = cartItems.map((item) => {
+      if (item.product.id === proId) {
+        return {
+          ...item,
+          quantity:
+            type === "increase"
+              ? item.quantity + 1
+              : Math.max(1, item.quantity - 1),
+        };
+      }
+
+      return item;
+    });
+
+    setCartItems(updated);
+  };
+
+  // Calculation
+
+  const subtotal = cartItems.reduce((total, item) => {
+    return total + item.product.price * item.quantity;
+  }, 0);
+
+  const tax = subtotal * 0.18;
+
+  const shipping = 50;
+
+  const total = subtotal + shipping + tax;
 
   return (
     <section className="py-6">
@@ -38,7 +75,7 @@ function Cart() {
                   />
                 </div>
 
-                {/* Title / variant / remove \ */}
+                {/* Title / variant /Quantity / remove */}
                 <div className="min-w-0">
                   <h4 className="font-semibold text-small text-gray-900">
                     {item.product?.title}
@@ -47,15 +84,25 @@ function Cart() {
                     {item.product?.variant}
                   </p>
 
-                  {/* Quantity  */}
-                  <div className="flex md:hidden items-center gap-2 mt-2">
-                    <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50">
+                  {/* Quantity */}
+                  <div className="[grid-area:qty] flex items-center gap-2 md:justify-self-center">
+                    <button
+                      className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50"
+                      onClick={() =>
+                        updateQuantity(item.product.id, "decrease")
+                      }
+                    >
                       <Minus size={12} />
                     </button>
                     <span className="text-sm font-medium w-4 text-center">
                       {item.quantity}
                     </span>
-                    <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50">
+                    <button
+                      className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50"
+                      onClick={() =>
+                        updateQuantity(item.product.id, "increase")
+                      }
+                    >
                       <Plus size={12} />
                     </button>
                   </div>
@@ -65,18 +112,6 @@ function Cart() {
                     onClick={() => removeFromCart(item.product.id)}
                   >
                     Remove
-                  </button>
-                </div>
-
-                <div className="hidden md:flex items-center gap-2 shrink-0">
-                  <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50">
-                    <Minus size={12} />
-                  </button>
-                  <span className="text-sm font-medium w-4 text-center">
-                    {item.quantity}
-                  </span>
-                  <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded-md hover:bg-gray-50">
-                    <Plus size={12} />
                   </button>
                 </div>
 
@@ -98,19 +133,19 @@ function Cart() {
                 <div className="flex justify-between text-gray-500">
                   <span>Subtotal</span>
                   <span className="font-medium text-gray-900">
-                    {/* ${subtotal.toFixed(2)} */}
+                    ${subtotal.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span>Shipping</span>
                   <span className="font-medium text-gray-900">
-                    {/* ${shipping.toFixed(2)} */}
+                    ${shipping.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span>Tax</span>
                   <span className="font-medium text-gray-900">
-                    {/* ${tax.toFixed(2)} */}
+                    ${tax.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -118,7 +153,7 @@ function Cart() {
               <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
                 <span className="font-semibold text-gray-900">Total</span>
                 <span className="text-xl font-bold text-gray-900">
-                  {/* ${total.toFixed(2)} */}
+                  ${total.toFixed(2)}
                 </span>
               </div>
 
