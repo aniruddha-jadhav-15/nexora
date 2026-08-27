@@ -1,12 +1,27 @@
-import { wishListCotext } from "./WishlistContext"
+import { WishlistContext } from "../context/WishlistContext";
+import { useState } from "react";
+function WishlistProvider({ children }) {
+  const [wishlist, setWishlist] = useState([]);
 
-function WishlistProvider({Children}) {
-   
+  const addWishList = (product) => {
+    const exists = wishlist.some((item) => item.id === product.id);
+
+    if (!exists) {
+      setWishlist([...wishlist, product]);
+    }
+  };
+
+  const removeFromWishlist = (productId) => {
+    const updatedWishlist = wishlist.filter((item) => item.id !== productId);
+    setWishlist(updatedWishlist);
+  };
   return (
-    <wishListCotext.Provider>
-        {Children}
-    </wishListCotext.Provider>
-  )
+    <WishlistContext.Provider
+      value={{ wishlist, setWishlist, addWishList, removeFromWishlist }}
+    >
+      {children}
+    </WishlistContext.Provider>
+  );
 }
 
-export default WishlistProvider
+export default WishlistProvider;
