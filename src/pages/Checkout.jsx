@@ -1,4 +1,48 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Checkout() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    apartment: "",
+    city: "",
+    state: "",
+    pincode: "",
+    payment: "",
+  });
+
+  const navigate = useNavigate();
+
+  const placeOrder = () => {
+    navigate("/order-confirmation");
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const hasEmptyField = Object.values(formData).some(
+      (value) => value.trim() === "",
+    );
+
+    if (hasEmptyField) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    placeOrder();
+  };
+
+  console.log(formData);
+
   return (
     <section className="container mx-auto px-4 py-8 sm:py-10">
       <div className="mb-8">
@@ -9,7 +53,7 @@ function Checkout() {
       </div>
 
       {/* Form */}
-      <form className="grid gap-8 lg:grid-cols-[1fr_300px]">
+      <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_300px]">
         <div>
           <h2 className="mb-5 text-lg font-semibold text-text">
             Shipping Information
@@ -19,9 +63,12 @@ function Checkout() {
             <div>
               <label className="text-xs font-medium">Full Name</label>
               <input
+                name="name"
                 type="text"
+                value={formData.name}
                 placeholder="Enter full name"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -29,8 +76,11 @@ function Checkout() {
               <label className="text-xs font-medium">Email Address</label>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
                 placeholder="Enter email address"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -38,8 +88,11 @@ function Checkout() {
               <label className="text-xs font-medium">Phone Number</label>
               <input
                 type="tel"
+                name="phone"
+                value={formData.phone}
                 placeholder="Enter phone number"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -47,8 +100,11 @@ function Checkout() {
               <label className="text-xs font-medium">Address</label>
               <input
                 type="text"
+                name="address"
+                value={formData.address}
                 placeholder="Enter address"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -56,8 +112,11 @@ function Checkout() {
               <label className="text-xs font-medium">Apartment / Suite</label>
               <input
                 type="text"
+                name="apartment"
+                value={formData.apartment}
                 placeholder="Enter apartment / suite"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -65,8 +124,11 @@ function Checkout() {
               <label className="text-xs font-medium">City</label>
               <input
                 type="text"
+                name="city"
+                value={formData.city}
                 placeholder="Enter city"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -74,8 +136,11 @@ function Checkout() {
               <label className="text-xs font-medium">State</label>
               <input
                 type="text"
+                name="state"
+                value={formData.state}
                 placeholder="Enter state"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
 
@@ -83,8 +148,11 @@ function Checkout() {
               <label className="text-xs font-medium">ZIP Code</label>
               <input
                 type="text"
+                name="pincode"
+                value={formData.pincode}
                 placeholder="Enter zip code"
                 className="mt-2 w-full rounded-lg border border-border px-3 py-3 text-sm outline-none focus:border-primary"
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -99,7 +167,13 @@ function Checkout() {
                 key={method}
                 className="flex cursor-pointer items-center gap-3 rounded-lg border border-border px-3 py-4 text-sm"
               >
-                <input type="radio" name="payment" className="accent-primary" />
+                <input
+                  type="radio"
+                  name="payment"
+                  value={method}
+                  className="accent-primary"
+                  onChange={handleChange}
+                />
                 {method}
               </label>
             ))}

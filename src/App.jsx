@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Shop from "./pages/Shop";
+import OrderConformed from "./pages/OrderConformed";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-confirmation" element={<OrderConformed />} />
       </Routes>
 
       <Footer />
