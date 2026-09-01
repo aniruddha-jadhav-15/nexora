@@ -12,16 +12,35 @@ function Navbar() {
   console.log(toogle);
 
   return (
-    <header className="icons flex justify-between  items-center md:px-8 px-4 py-2 border border-border bg-surface">
-      <div className="flex items-center gap-1">
-        <button onClick={handleOpenClose}>
-          <IoMenuSharp className="md:hidden text-lg color" />
-        </button>
-        <Logo />
+    <>
+      {/* Top Bar */}
+      <div className="hidden bg-black px-4 py-2 text-xs text-white md:block">
+        <div className="container flex items-center justify-between">
+          <span>🚚 Free Shipping on orders over ₹999</span>
+          <span>✨ New Year Sale — Up to 30% Off</span>
+          <span>Launch 2026</span>
+        </div>
       </div>
-      <Navigation toogle={toogle} handleOpenClose={handleOpenClose} />
-      <NavbarIcons />
-    </header>
+
+      {/* Navbar */}
+      <header className="border-b border-border bg-background">
+        <div className="container flex h-16 items-center justify-between px-4 md:h-20">
+          {/* Mobile Menu + Logo */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleOpenClose}
+              className="text-2xl text-text md:hidden"
+            >
+              <IoMenuSharp />
+            </button>
+
+            <Logo />
+          </div>
+          <Navigation toogle={toogle} handleOpenClose={handleOpenClose} />
+          <NavbarIcons />
+        </div>
+      </header>
+    </>
   );
 }
 
