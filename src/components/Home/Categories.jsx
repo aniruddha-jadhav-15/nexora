@@ -2,14 +2,12 @@ import ProductSlider from "../common/ProductSlider";
 
 function Categories({ products }) {
   let filteredProducts = products;
-  const Categories = filteredProducts.map((product) => product.category.name);
+  const Categories = filteredProducts.map((product) => product.category);
   const uniqueCategories = [...new Set(Categories)];
 
   const categoryProducts = uniqueCategories
     .map((category) => {
-      const product = products.find(
-        (product) => product.category.name === category,
-      );
+      const product = products.find((product) => product.category === category);
 
       return product;
     })
