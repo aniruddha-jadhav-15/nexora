@@ -36,7 +36,14 @@ function ProductSlider({ title, products, variant }) {
           className="flex gap-4 overflow-x-auto scrollbar-hide"
         >
           {products.map((product) => (
-            <div key={product.id} className="min-w-[220px]">
+            <div
+              key={product.id}
+              className={`shrink-0 ${
+                variant === "featured"
+                  ? "w-[300px] sm:w-[380px]"
+                  : "w-[165px] sm:w-[220px]"
+              }`}
+            >
               <ProductCard product={product} variant={variant} />
             </div>
           ))}
