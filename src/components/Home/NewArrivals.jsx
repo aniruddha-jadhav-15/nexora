@@ -6,7 +6,17 @@ function NewArrivals({ products }) {
     .sort((a, b) => new Date(b.creationAt) - new Date(a.creationAt))
     .slice(0, 20);
 
-  return <ProductSlider title="New Arrivals" products={newestProducts} />;
+  return (
+    <section className="py-8 md:py-10">
+      <div className="container">
+        <ProductSlider
+          title="New Arrivals"
+          products={newestProducts}
+          variant="compact"
+        />
+      </div>
+    </section>
+  );
 }
 
 export default NewArrivals;
