@@ -1,7 +1,9 @@
-function SectionHeader({ header }) {
+function SectionHeader({ header, children }) {
   return (
-    <div>
-      <h2 className="text-text font-bold text-h2 my-4 ">{header}</h2>
+    <div className="mb-4 flex items-center justify-between">
+      <h2 className="text-base font-bold text-text sm:text-2xl">{header}</h2>
+
+      <div className="flex items-center gap-1.5 sm:gap-2">{children}</div>
     </div>
   );
 }
