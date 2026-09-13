@@ -4,9 +4,19 @@ function BestSellers({ products }) {
   let bestSellersProducts = [...products];
   bestSellersProducts = bestSellersProducts
     .sort((a, b) => b.rating - a.rating)
-    .slice(0, 10);
+    .slice(0, 3);
 
-  return <ProductSlider title="Best Sellers" products={bestSellersProducts} />;
+  return (
+    <section className="py-8 md:py-10">
+      <div className="container">
+        <ProductSlider
+          title="Best Sellers"
+          products={bestSellersProducts}
+          variant="featured"
+        />
+      </div>
+    </section>
+  );
 }
 
 export default BestSellers;
