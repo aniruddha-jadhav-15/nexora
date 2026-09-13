@@ -14,11 +14,15 @@ function Categories({ products }) {
     .filter((product) => product !== undefined);
 
   return (
-    <ProductSlider
-      title="Shop by Categories"
-      products={categoryProducts}
-      variant="minimal"
-    />
+    <section className="py-8 md:py-10">
+      <div className="container">
+        <ProductSlider
+          title="Shop by Categories"
+          products={categoryProducts}
+          variant="minimal"
+        />
+      </div>
+    </section>
   );
 }
 
