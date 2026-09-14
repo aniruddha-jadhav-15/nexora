@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProductCard from "../components/product/ProductCard";
 import useProducts from "../hooks/useProducts";
 import { CiSearch } from "react-icons/ci";
+import ProductCardSkeleton from "../components/common/ProductCardSkeleton";
 
 function Shop() {
   const [userSearch, setUserSearch] = useState("");
@@ -19,7 +20,7 @@ function Shop() {
 
   // Category
 
-  const categories = data.map((product) => product.category?.name);
+  const categories = data.map((product) => product.category);
 
   const uniqueCategories = [...new Set(categories)];
   const handleCategory = (e) => {
@@ -33,7 +34,7 @@ function Shop() {
   };
   if (selectedCategories.length > 0) {
     filteredData = filteredData.filter((product) =>
-      selectedCategories.includes(product.category?.name),
+      selectedCategories.includes(product.category),
     );
   }
 
@@ -54,24 +55,45 @@ function Shop() {
   // Loading and Error
   if (isLoading) {
     return (
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <p>Loading products...</p>
+      <section className="py-8 md:py-10">
+        <div className="container">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
         </div>
       </section>
     );
   }
 
+  // Error
   if (isError) {
     return (
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <p>Failed to load products.</p>
+      <section className="py-16">
+        <div className="container flex flex-col items-center justify-center text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-500">
+            ⚠️
+          </div>
+
+          <h2 className="mt-4 text-lg font-semibold text-text">
+            Something went wrong
+          </h2>
+
+          <p className="mt-2 text-sm text-text-secondary">
+            We couldn't load the products. Please try again.
+          </p>
+
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-5 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark"
+          >
+            Try Again
+          </button>
         </div>
       </section>
     );
   }
-
   data.forEach((product) => {
     product.images.forEach((image) => {
       if (!image.startsWith("http")) {
@@ -145,11 +167,7 @@ function Shop() {
             {/* Products */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4">
               {filteredData.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  variant="full"
-                />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>
