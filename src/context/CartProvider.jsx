@@ -10,16 +10,32 @@ function CartProvider({ children }) {
   }, [cartItems]);
 
   const addToCart = (product, size, quantity) => {
-    setCartItems((prev) => [
-      ...prev,
-      {
-        product: product,
-        size: size,
-        quantity: quantity,
-      },
-    ]);
-  };
+    setCartItems((prev) => {
+      const existingItem = prev.find(
+        (item) => item.product.id === product.id && item.size === size,
+      );
 
+      if (existingItem) {
+        return prev.map((item) =>
+          item.product.id === product.id && item.size === size
+            ? {
+                ...item,
+                quantity: item.quantity + quantity,
+              }
+            : item,
+        );
+      }
+
+      return [
+        ...prev,
+        {
+          product,
+          size,
+          quantity,
+        },
+      ];
+    });
+  };
   return (
     <CartContext.Provider value={{ cartItems, setCartItems, addToCart }}>
       {children}
