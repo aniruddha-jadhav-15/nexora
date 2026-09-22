@@ -8,12 +8,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Shop from "./pages/Shop";
 import OrderConformed from "./pages/OrderConformed";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
       <Navbar />
-
+      <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -23,7 +23,6 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-confirmation" element={<OrderConformed />} />
       </Routes>
-
       <Footer />
     </>
   );

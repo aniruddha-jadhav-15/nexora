@@ -1,6 +1,7 @@
 import { CiHeart } from "react-icons/ci";
 import { useContext } from "react";
 import { WishlistContext } from "../context/WishlistContext";
+import toast from "react-hot-toast";
 function WishlistButton({ product }) {
   const { wishlist, addWishList, removeFromWishlist } =
     useContext(WishlistContext);
@@ -15,6 +16,7 @@ function WishlistButton({ product }) {
         onClick={(e) => {
           e.stopPropagation();
           toggleWishList();
+          toast.success("Added to wishlist!");
         }}
       />
     </button>

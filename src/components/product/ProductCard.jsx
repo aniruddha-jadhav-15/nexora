@@ -4,6 +4,7 @@ import WishlistButton from "../WishlistButton";
 import { ShoppingCart } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import toast from "react-hot-toast";
 
 function ProductCard({ product, variant = "default" }) {
   const navigate = useNavigate();
@@ -112,6 +113,7 @@ function ProductCard({ product, variant = "default" }) {
             onClick={(e) => {
               e.stopPropagation();
               addToCart(product, null, 1);
+              toast.success("Added to cart!");
             }}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark"
           >
@@ -214,6 +216,7 @@ function ProductCard({ product, variant = "default" }) {
           onClick={(e) => {
             e.stopPropagation();
             addToCart(product, null, 1);
+            toast.success("Added to cart!");
           }}
           className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:bg-border"
         >

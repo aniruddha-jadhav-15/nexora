@@ -3,6 +3,7 @@ import { CiTrash } from "react-icons/ci";
 import { ShoppingBag } from "lucide-react";
 import { WishlistContext } from "../context/WishlistContext";
 import { CartContext } from "../context/CartContext";
+import toast from "react-hot-toast";
 
 function Wishlist() {
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);
@@ -13,6 +14,7 @@ function Wishlist() {
   const addAllToCart = () => {
     wishlist.forEach((product) => {
       addToCart(product, null, 1);
+      toast.success("Added to cart!");
     });
   };
 
@@ -105,7 +107,10 @@ function Wishlist() {
 
                       <button
                         type="button"
-                        onClick={() => addToCart(product, null, 1)}
+                        onClick={() => {
+                          addToCart(product, null, 1);
+                          toast.success("Added to cart!");
+                        }}
                         className="rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white transition hover:bg-primary-dark sm:text-sm"
                       >
                         Add to Cart

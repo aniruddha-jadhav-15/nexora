@@ -6,6 +6,7 @@ import WishlistButton from "../components/WishlistButton";
 import StarRating from "../components/common/StarRating";
 import { ShoppingCart, Truck, RotateCcw } from "lucide-react";
 import ProductCard from "../components/product/ProductCard";
+import toast from "react-hot-toast";
 function ProductDetails() {
   const { id } = useParams();
   const { data, isError, isLoading } = useProducts();
@@ -58,6 +59,7 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     addToCart(product, selectedSize, quantity);
+    toast.success("Added to cart!");
   };
 
   // Clothing & Shoe Size Selection
