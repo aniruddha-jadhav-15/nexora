@@ -9,7 +9,6 @@ function Navbar() {
   const handleOpenClose = () => {
     setToogle((prev) => !prev);
   };
-  console.log(toogle);
 
   return (
     <>
@@ -17,8 +16,8 @@ function Navbar() {
       <div className="hidden bg-black px-4 py-2 text-xs text-white md:block">
         <div className="container flex items-center justify-between">
           <span>🚚 Free Shipping on orders over ₹999</span>
-          <span>✨ New Year Sale — Up to 30% Off</span>
-          <span>Launch 2026</span>
+          <span>🔥 Special Offers — Up to 30% Off</span>
+          <span>✨ Shop. Save. Repeat.</span>
         </div>
       </div>
 
