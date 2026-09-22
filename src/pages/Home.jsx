@@ -7,21 +7,36 @@ import PromoSection from "../components/Home/PromoSection";
 import useProducts from "../hooks/useProducts";
 function Home() {
   const { data = [], isError, isLoading } = useProducts();
+
   if (isLoading) {
-    return <p>Loading products...</p>;
+    return (
+      <section className="flex min-h-[50vh] items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary-light border-t-primary" />
+
+          <p className="text-sm font-medium text-text-secondary">
+            Loading products...
+          </p>
+        </div>
+      </section>
+    );
   }
   if (isError) {
-    return <p>Failed to load products.</p>;
+    return (
+      <section className="flex min-h-[50vh] items-center justify-center">
+        <p className="text-sm font-medium text-error">
+          Failed to load products. Please try again.
+        </p>
+      </section>
+    );
   }
-  console.log(data);
-
   return (
     <>
-      <Hero />
+      <Hero products={data} />
       <Benefits />
-      <Categories />
-      <NewArrivals />
-      <BestSellers />
+      <Categories products={data} />
+      <NewArrivals products={data} />
+      <BestSellers products={data} />
       <PromoSection />
     </>
   );
