@@ -33,42 +33,21 @@ function Checkout() {
       [e.target.name]: e.target.value,
     }));
   };
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (cartItems.length === 0) {
-      navigate("/cart");
-      return;
-    }
-
-    const requiredFields = [
-      "name",
-      "email",
-      "phone",
-      "address",
-      "city",
-      "state",
-      "pincode",
-    ];
-
-    const hasEmptyField = requiredFields.some(
-      (field) => formData[field].trim() === "",
+    const hasEmptyField = Object.values(formData).some(
+      (value) => value.trim() === "",
     );
 
     if (hasEmptyField) {
-      alert("Please fill all required fields.");
-      return;
-    }
-
-    if (!formData.payment) {
-      alert("Please select a payment method.");
+      alert("Please fill all fields.");
+      navigate("/order-confirmation");
       return;
     }
 
     navigate("/order-confirmation");
   };
-
   if (cartItems.length === 0) {
     return (
       <section className="py-16">
@@ -338,6 +317,7 @@ function Checkout() {
             <button
               type="submit"
               className="mt-6 w-full rounded-lg bg-primary py-3 text-sm font-semibold text-white transition hover:bg-primary-dark"
+              onClick={() => navigate("/order-confirmation")}
             >
               Place Order
             </button>
