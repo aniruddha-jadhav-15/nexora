@@ -1,7 +1,9 @@
 import axios from "axios";
+
 const featchProducts = async () => {
-  const resposie = await axios.get("https://api.escuelajs.co/api/v1/products");
-  return resposie.data;
+  const response = await axios.get("https://dummyjson.com/products?limit=150");
+
+  return response.data.products;
 };
 
 export default featchProducts;
