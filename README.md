@@ -1,16 +1,101 @@
-# React + Vite
+# Nexora 🛍️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nexora is a responsive ecommerce website I built using React and Tailwind CSS.
 
-Currently, two official plugins are available:
+I built this project to practice React by creating a complete shopping flow — from browsing products to adding them to the cart and completing checkout.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Browse products
+- Search products
+- Filter by category
+- Sort products
+- Product details page
+- Wishlist
+- Shopping cart
+- Quantity management
+- Checkout
+- Order confirmation
+- Toast notifications
+- Responsive design
+- Loading and error states
+- Cart and wishlist saved in localStorage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- React Router
+- Tailwind CSS
+- React Query
+- Axios
+- React Icons
+- React Hot Toast
+- Vite
+- DummyJSON API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+Clone the repository:
+
+```bash
+git clone YOUR_REPOSITORY_URL
+cd nexora
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the project:
+
+```bash
+npm run dev
+```
+
+For a production build:
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```text
+src/
+├── components/
+├── pages/
+├── context/
+├── hooks/
+├── services/
+└── App.jsx
+```
+
+## What I Practiced
+
+While building Nexora, I worked with:
+
+- React Router
+- React Context API
+- React Query
+- API integration
+- `useState` and `useEffect`
+- `useParams` and `useNavigate`
+- localStorage
+- Product filtering and sorting
+- Responsive layouts with Tailwind CSS
+
+## Live Demo
+
+Coming soon.
+
+## Screenshots
+
+Coming soon.
+
+## Author
+
+**Aniruddha Jadhav**
+
+GitHub: `aniruddha-jadhav-15`
